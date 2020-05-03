@@ -1,4 +1,4 @@
-package com.evo.NEAT;
+package com.evo.NEAT.genes;
 
 import java.util.ArrayList;
 

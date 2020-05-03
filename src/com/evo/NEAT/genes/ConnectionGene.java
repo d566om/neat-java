@@ -1,4 +1,4 @@
-package com.evo.NEAT;
+package com.evo.NEAT.genes;
 
 /**
  * ConnectionGene Represents the connection(Axon) of the neuron
@@ -7,35 +7,34 @@ package com.evo.NEAT;
  */
 public class ConnectionGene {
 
-    private int into,out, innovation;
+    private int source, target, innovation;
     private float weight;
     private boolean enabled;
 
-    public ConnectionGene(int into, int out, int innovation, float weight, boolean enabled) {
-        this.into = into;
-        this.out = out;
+    public ConnectionGene(int source, int target, int innovation, float weight, boolean enabled) {
+        this.source = source;
+        this.target = target;
         this.innovation = innovation;
         this.weight = weight;
         this.enabled = enabled;
     }
 
-    // Copy
-    public ConnectionGene(ConnectionGene connectionGene){
-        if(connectionGene!=null) {
-            this.into = connectionGene.getInto();
-            this.out = connectionGene.getOut();
+    public ConnectionGene(ConnectionGene connectionGene) {
+        if (connectionGene != null) {
+            this.source = connectionGene.getSource();
+            this.target = connectionGene.getTarget();
             this.innovation = connectionGene.getInnovation();
             this.weight = connectionGene.getWeight();
             this.enabled = connectionGene.isEnabled();
         }
     }
 
-    public int getInto() {
-        return into;
+    public int getSource() {
+        return source;
     }
 
-    public int getOut() {
-        return out;
+    public int getTarget() {
+        return target;
     }
 
     public int getInnovation() {
@@ -58,16 +57,8 @@ public class ConnectionGene {
         this.enabled = enabled;
     }
 
-
     @Override
     public String toString() {
-/*        return "ConnectionGene{" +
-                "into=" + into +
-                ", out=" + out +
-                ", innovation=" + innovation +
-                ", weight=" + weight +
-                ", enabled=" + enabled +
-                '}';*/
-        return into+","+out+","+weight+","+enabled;
+        return source + "," + target + "," + weight + "," + enabled;
     }
 }

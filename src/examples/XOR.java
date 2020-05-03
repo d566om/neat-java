@@ -1,7 +1,7 @@
 package examples;
 
 import com.evo.NEAT.Environment;
-import com.evo.NEAT.Genome;
+import com.evo.NEAT.genome.Genome;
 import com.evo.NEAT.Pool;
 
 import java.util.ArrayList;
@@ -21,8 +21,6 @@ public class XOR implements Environment {
                     float inputs[] = {i, j};
                     float output[] = gene.evaluateNetwork(inputs);
                     int expected = i^j;
-                    //                  System.out.println("Inputs are " + inputs[0] +" " + inputs[1] + " output " + output[0] + " Answer : " + (i ^ j));
-                    //if (output[0] == (i ^ j))
                     fitness +=  (1 - Math.abs(expected - output[0]));
                 }
             fitness = fitness * fitness;
@@ -39,10 +37,9 @@ public class XOR implements Environment {
         Pool pool = new Pool();
         pool.initializePool();
 
-        Genome topGenome = new Genome();
+        Genome topGenome;
         int generation = 0;
         while(true){
-            //pool.evaluateFitness();
             pool.evaluateFitness(xor);
             topGenome = pool.getTopGenome();
             System.out.println("TopFitness : " + topGenome.getPoints());
@@ -50,10 +47,8 @@ public class XOR implements Environment {
             if(topGenome.getPoints()>15){
                 break;
             }
-//            System.out.println("Population : " + pool.getCurrentPopulation() );
+            System.out.println("Population : " + pool.getCurrentPopulation() );
             System.out.println("Generation : " + generation );
-            //           System.out.println("Total number of matches played : "+TicTacToe.matches);
-            //           pool.calculateGenomeAdjustedFitness();
 
             pool.breedNewGeneration();
             generation++;
